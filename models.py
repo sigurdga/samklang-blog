@@ -65,13 +65,11 @@ class Entry(models.Model):
         for ref, slug in images:
             try:
                 image = Image.objects.get(slug=slug)
-                print image
                 url = image.image.url
             except ObjectDoesNotExist:
                 url = slug
             image_ref = "%s\n[%s]: %s" % ( image_ref, slug, url )
         
-        print image_ref
         body = "%s\n%s" % ( self.body, image_ref )
       
         # convert markdown to html and store it
