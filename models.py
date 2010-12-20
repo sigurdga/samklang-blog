@@ -60,7 +60,7 @@ class Entry(models.Model):
 	
     def save(self, *args, **kwargs):
         # add markdown for images if needed
-        images = re.findall("!\[(?P<alt>[-_\w]+)\]\[(?P<slug>[-\w]+)\]+", self.body)
+        images = re.findall("!\[(?P<alt>[-_\w ]+)\]\[(?P<slug>[-\w]+)\]+", self.body)
         image_ref = ""
         for ref, slug in images:
             try:
