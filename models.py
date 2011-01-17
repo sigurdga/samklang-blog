@@ -1,7 +1,9 @@
 from django.db import models
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.contenttypes.models import ContentType
 
 from tagging.fields import TagField
 from tagging.models import Tag
@@ -29,7 +31,12 @@ class Category(models.Model):
 
 
 class Entry(models.Model):
-    """Blog Entry"""
+    """
+    Blog Entry.
+    Specify which image class to use in settings.
+    Example:
+        BLOG_IMAGE_MODEL = { 'app': 'blog', 'model': 'image' }
+    """
     
     # core fields
     title = models.CharField(max_length=80, help_text=_("Maximum 80 characters."))
@@ -64,8 +71,10 @@ class Entry(models.Model):
         image_ref = ""
         for ref, slug in images:
             try:
-                image = Image.objects.get(slug=slug)
-                url = image.image.url
+                image_class = ContentType.objects.get(app_label=settings.BLOG_IMAGE_MODEL['app'], 
+                                                      model=settings.BLOG_IMAGE_MODEL['model'])
+                image = image_class.get_object_for_this_type(slug=slug)
+                url = image.get_image_url()
             except ObjectDoesNotExist:
                 url = slug
             image_ref = "%s\n[%s]: %s" % ( image_ref, slug, url )
@@ -95,3 +104,23 @@ class Entry(models.Model):
         Tag.objects.update_tags(self, tags)
 
     tags = property(_get_tags, _set_tags)
+
+class Image(models.Model):
+    """
+    Example Image class for use with entry.
+    A Slug field and a method for getting image url is needed.
+    """
+    
+    slug = models.SlugField(unique=True, help_text=_('Must be unique'))
+    image = models.ImageField(upload_to='/var/tmp')
+    pub_date = models.DateField(auto_now=True)
+
+    class Meta:
+        ordering = ['-pub_date']
+        verbose_name, verbose_name_plural = "Image", "Images"
+
+    def __unicode__(self):
+        return self.slug
+        
+    def get_image_url(self):
+        return self.image.url
