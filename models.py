@@ -20,7 +20,7 @@ class Category(models.Model):
     
     class Meta:
 	    ordering = ['title']
-	    verbose_name_plural = _("Categories")
+	    verbose_name_plural = _("categories")
     
     def __unicode__(self):
 	    return self.title
@@ -63,7 +63,7 @@ class Entry(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
-        verbose_name_plural = _("Entries")
+        verbose_name_plural = _("entries")
 	
     def save(self, *args, **kwargs):
         # add markdown for images if needed
@@ -117,7 +117,7 @@ class Image(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
-        verbose_name, verbose_name_plural = "Image", "Images"
+        verbose_name, verbose_name_plural = _("image"), _("images")
 
     def __unicode__(self):
         return self.slug
