@@ -16,7 +16,7 @@ class Category(models.Model):
     """Blog category"""
     title = models.CharField(max_length=80, help_text=_('Maximum 80 characters.'))
     slug = models.SlugField(unique=True, help_text=_('Suggested value automatically generated from title. Must be unique.'))
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     
     class Meta:
 	    ordering = ['title']
