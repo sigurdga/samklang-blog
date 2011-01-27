@@ -6,18 +6,30 @@ Replace these with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from blog.models import Entry, Category
+from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.failUnlessEqual(1 + 1, 2)
+from datetime import datetime
 
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
+class EntryTest(TestCase):
+    def test_live_entry(self):
+        u = User()
+        u.username = "testuser"
+        u.save()
+        c = Category()
+        c.slug = "cat"
+        c.title = "Cat"
+        c.save()
+        e = Entry()
+        e.title = "test"
+        e.slug = "test"
+        e.body = "jadda"
+        e.category = c
+        e.user = u
+        e.pub_date = datetime.now()
+        e.save()
 
->>> 1 + 1 == 2
-True
-"""}
+        f = Entry.live.get(title="test")
+        self.assertEqual(e, f)
 
