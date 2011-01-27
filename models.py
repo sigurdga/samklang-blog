@@ -58,8 +58,8 @@ class Entry(models.Model):
     tag_list = TagField(help_text="Separate tags with spaces.", default="")
     
     # managers, first one is default
-    live = LiveEntryManager()
     objects = models.Manager()
+    live = LiveEntryManager()
 
     class Meta:
         ordering = ['-pub_date']
