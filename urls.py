@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+#from blog.views import new_entry
 from blog.models import Entry
 
 entry_info_dict = {
@@ -12,7 +13,11 @@ entry_date_dict = {
     'allow_empty': True,
 }
 
-urlpatterns = patterns('django.views.generic.date_based',
+urlpatterns = patterns('',
+    (r'^new/$', 'blog.views.new_entry', {}, 'blog_entry_new'),
+)
+
+urlpatterns += patterns('django.views.generic.date_based',
     (r'^(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$', 'object_detail', entry_info_dict, 'blog_entry_detail'),
     (r'^(?P<year>\d{4})/(?P<month>\w{3})/$', 'archive_month', entry_date_dict, 'blog_entry_archive_month'),
     (r'^(?P<year>\d{4})/$', 'archive_year', entry_date_dict, 'blog_entry_archive_year'),
