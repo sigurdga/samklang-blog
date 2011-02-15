@@ -112,7 +112,7 @@ class Image(models.Model):
     """
     
     slug = models.SlugField(unique=True, help_text=_('Must be unique'))
-    image = models.ImageField(upload_to='/var/tmp')
+    image = models.ImageField(upload_to=settings.MEDIA_ROOT)
     pub_date = models.DateField(auto_now=True)
 
     class Meta:
