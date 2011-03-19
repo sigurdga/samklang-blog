@@ -1,4 +1,4 @@
-from django.forms import ModelForm, HiddenInput
+from django.forms import ModelForm
 from blog.models import Entry
 
 class EntryForm(ModelForm):
