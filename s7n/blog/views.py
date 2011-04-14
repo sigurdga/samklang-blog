@@ -4,8 +4,8 @@ from django.template import RequestContext
 
 from samklang.core.response import JSONResponse
 
-from blog.models import Entry, Image
-from blog.forms import EntryForm
+from s7n.blog.models import Entry, Image
+from s7n.blog.forms import EntryForm
 
 def new_entry(request):
     """Create a new entry"""
@@ -19,10 +19,10 @@ def new_entry(request):
     else:
         entry = Entry()
         form = EntryForm(instance=entry)
-    
+
     return render_to_response(
-        'blog/new_entry.html', 
-        {'form': form}, 
+        'blog/new_entry.html',
+        {'form': form},
         context_instance=RequestContext(request))
 
 def images_json(request):

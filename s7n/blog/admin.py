@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib import admin
-from blog.models import Category, Entry, Image
+from s7n.blog.models import Category, Entry, Image
 
 class CategoryAdmin(admin.ModelAdmin):
 	prepopulated_fields = { 'slug': ['title'] }
@@ -9,7 +9,7 @@ admin.site.register(Category, CategoryAdmin)
 class ImageAdmin(admin.ModelAdmin):
     pass
 admin.site.register(Image, ImageAdmin)
-	
+
 class EntryAdmin(admin.ModelAdmin):
     prepopulated_fields = { 'slug': ['title'] }
     fields = ['title', 'slug', 'body', 'user', 'group', 'pub_date', 'pub_enddate', 'category', 'tag_list']
@@ -17,12 +17,12 @@ class EntryAdmin(admin.ModelAdmin):
     list_filter = ('group', 'pub_date')
     ordering = ('-pub_date',)
     search_fields = ('title', 'body_html')
-        
+
     def queryset(self, request):
         if request.user.is_superuser:
             qs = self.model.objects.get_query_set()
         else:
             qs = self.model.objects.get_query_set().filter(author = request.user)
-        
+
         return qs
 admin.site.register(Entry, EntryAdmin)

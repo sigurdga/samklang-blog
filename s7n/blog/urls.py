@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
-from blog.views import new_entry, images_json
-from blog.models import Entry
+from s7n.blog.views import new_entry, images_json
+from s7n.blog.models import Entry
 
 entry_info_dict = {
     'queryset': Entry.live.all(),

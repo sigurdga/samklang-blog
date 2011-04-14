@@ -6,7 +6,7 @@ Replace these with more appropriate tests for your application.
 """
 
 from django.test import TestCase
-from blog.models import Entry, Category
+from s7n.blog.models import Entry, Category
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 
