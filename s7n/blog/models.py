@@ -17,14 +17,15 @@ class Category(models.Model):
     title = models.CharField(max_length=80, help_text=_('Maximum 80 characters.'))
     slug = models.SlugField(unique=True, help_text=_('Suggested value automatically generated from title. Must be unique.'))
     description = models.TextField(blank=True, null=True)
-    
+
     class Meta:
-	    ordering = ['title']
-	    verbose_name_plural = _("categories")
-    
+        ordering = ['title']
+        verbose_name_plural = _("categories")
+        db_table = 's7n_blog_category'
+
     def __unicode__(self):
 	    return self.title
-        
+
     @models.permalink
     def get_absolute_url(self):
         return ('blog_category_detail', (), { 'slug': self.slug })
@@ -37,14 +38,14 @@ class Entry(models.Model):
     Example:
         BLOG_IMAGE_MODEL = { 'app': 'blog', 'model': 'image' }
     """
-    
+
     # core fields
     title = models.CharField(max_length=80, help_text=_("Maximum 80 characters."))
     body = models.TextField(help_text=_("Content written in markdown syntax."))
     pub_date = models.DateTimeField(blank=True, null=True, help_text=_("Date from which the entry is shown live. Blank = draft."))
     pub_enddate = models.DateTimeField(blank=True, null=True, help_text=_("Date from which the entry not longer is shown live. Blank = live forever."))
     updated_date = models.DateTimeField(auto_now=True)
-    
+
 	# fields to store generated html
     body_html = models.TextField(editable=False, blank=True)
 
@@ -56,7 +57,7 @@ class Entry(models.Model):
 	# categorization
     category = models.ForeignKey(Category)
     tag_list = TagField(help_text="Separate tags with spaces.", default="")
-    
+
     # managers, first one is default
     objects = models.Manager()
     live = LiveEntryManager()
@@ -64,23 +65,24 @@ class Entry(models.Model):
     class Meta:
         ordering = ['-pub_date']
         verbose_name_plural = _("entries")
-	
+        db_table = 's7n_blog_entry'
+
     def save(self, *args, **kwargs):
         # add markdown for images if needed
         images = re.findall("!\[(?P<alt>[-_\w ]+)\]\[(?P<slug>[-\w]+)\]+", self.body)
         image_ref = ""
         for ref, slug in images:
             try:
-                image_class = ContentType.objects.get(app_label=settings.BLOG_IMAGE_MODEL['app'], 
+                image_class = ContentType.objects.get(app_label=settings.BLOG_IMAGE_MODEL['app'],
                                                       model=settings.BLOG_IMAGE_MODEL['model'])
                 image = image_class.get_object_for_this_type(slug=slug)
                 url = image.get_image_url()
             except ObjectDoesNotExist:
                 url = slug
             image_ref = "%s\n[%s]: %s" % ( image_ref, slug, url )
-        
+
         body = "%s\n%s" % ( self.body, image_ref )
-      
+
         # convert markdown to html and store it
         self.body_html = markdown(body, ['codehilite'])
         super(Entry, self).save(*args, **kwargs)
@@ -96,10 +98,10 @@ class Entry(models.Model):
             'day': self.pub_date.strftime("%d"),
             'slug': self.slug
         })
-    
+
     def _get_tags(self):
         return Tag.objects.get_for_object(self)
-    
+
     def _set_tags(self, tags):
         Tag.objects.update_tags(self, tags)
 
@@ -110,7 +112,7 @@ class Image(models.Model):
     Example Image class for use with entry.
     A Slug field and a method for getting image url is needed.
     """
-    
+
     slug = models.SlugField(unique=True, help_text=_('Must be unique'))
     image = models.ImageField(upload_to=settings.MEDIA_ROOT)
     pub_date = models.DateField(auto_now=True)
@@ -118,9 +120,10 @@ class Image(models.Model):
     class Meta:
         ordering = ['-pub_date']
         verbose_name, verbose_name_plural = _("image"), _("images")
+        db_table = 's7n_blog_image'
 
     def __unicode__(self):
         return self.slug
-        
+
     def get_image_url(self):
         return self.image.url
