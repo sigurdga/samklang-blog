@@ -10,7 +10,7 @@ from tagging.models import Tag
 from markdown import markdown
 import re
 
-from blog.managers import LiveEntryManager
+from s7n.blog.managers import LiveEntryManager
 
 class Category(models.Model):
     """Blog category"""
