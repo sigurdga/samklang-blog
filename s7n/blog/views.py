@@ -2,9 +2,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
-from samklang.core.response import JSONResponse
-
-from s7n.blog.models import Entry, Image
+from s7n.blog.models import Entry
 from s7n.blog.forms import EntryForm
 
 def new_entry(request):
@@ -25,8 +23,3 @@ def new_entry(request):
         {'form': form},
         context_instance=RequestContext(request))
 
-def images_json(request):
-    """Return json data of images"""
-    images = Image.objects.all()
-    data = [{'slug': img.slug, 'url': img.get_image_url()} for img in images]
-    return JSONResponse(data)

@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from s7n.blog.views import new_entry, images_json
+from s7n.blog.views import new_entry
 from s7n.blog.models import Entry
 
 entry_info_dict = {
@@ -15,7 +15,6 @@ entry_date_dict = {
 
 urlpatterns = patterns('',
     (r'^new/$', new_entry, {}, 'blog_entry_new'),
-    (r'^images.json$', images_json, {}),
 )
 
 urlpatterns += patterns('django.views.generic.date_based',
