@@ -7,7 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from tagging.fields import TagField
 from tagging.models import Tag
-from markdown import markdown
+from s7n.utils import markdown
 import re
 
 from s7n.blog.managers import LiveEntryManager
@@ -69,7 +69,7 @@ class Entry(models.Model):
 
     def save(self, *args, **kwargs):
         # convert markdown to html and store it
-        self.body_html = markdown(self.body, ['codehilite'])
+        self.body_html = markdown(self.body)
         super(Entry, self).save(*args, **kwargs)
 
     def __unicode__(self):
