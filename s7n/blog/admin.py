@@ -1,15 +1,10 @@
-from django.db import models
 from django.contrib import admin
-from s7n.blog.models import Category, Entry
-
-class CategoryAdmin(admin.ModelAdmin):
-	prepopulated_fields = { 'slug': ['title'] }
-admin.site.register(Category, CategoryAdmin)
+from s7n.blog.models import Entry
 
 class EntryAdmin(admin.ModelAdmin):
     prepopulated_fields = { 'slug': ['title'] }
-    fields = ['title', 'slug', 'body', 'user', 'group', 'pub_date', 'pub_enddate', 'category', 'tag_list']
-    list_display = ('title', 'user', 'group', 'category', 'pub_date', 'updated_date')
+    fields = ['title', 'slug', 'body', 'user', 'group', 'pub_date', 'pub_enddate', 'tag_list']
+    list_display = ('title', 'user', 'group', 'pub_date', 'updated_date')
     list_filter = ('group', 'pub_date')
     ordering = ('-pub_date',)
     search_fields = ('title', 'body_html')
