@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User, Group
+from django.contrib.sites.models import Site
 
 from tagging.fields import TagField
 from tagging.models import Tag
@@ -27,7 +28,8 @@ class Entry(models.Model):
     body_html = models.TextField(editable=False, blank=True)
 
 	# metadata
-    user = models.ForeignKey(User)
+    site = models.ForeignKey(Site, verbose_name=_('site'))
+    user = models.ForeignKey(User, verbose_name=_('user'))
     group = models.ForeignKey(Group, verbose_name=_('created for'), null=True, blank=True)
     slug = models.SlugField(unique_for_date='pub_date', help_text="Suggested value generated from title. Must be unique.")
 
