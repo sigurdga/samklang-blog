@@ -8,25 +8,6 @@ from s7n.utils import markdown
 
 from s7n.blog.managers import LiveEntryManager
 
-class Category(models.Model):
-    """Blog category"""
-    title = models.CharField(max_length=80, help_text=_('Maximum 80 characters.'))
-    slug = models.SlugField(unique=True, help_text=_('Suggested value automatically generated from title. Must be unique.'))
-    description = models.TextField(blank=True, null=True)
-
-    class Meta:
-        ordering = ['title']
-        verbose_name_plural = _("categories")
-        db_table = 's7n_blog_category'
-
-    def __unicode__(self):
-	    return self.title
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('blog_category_detail', (), { 'slug': self.slug })
-
-
 class Entry(models.Model):
     """
     Blog Entry.
@@ -51,7 +32,6 @@ class Entry(models.Model):
     slug = models.SlugField(unique_for_date='pub_date', help_text="Suggested value generated from title. Must be unique.")
 
 	# categorization
-    category = models.ForeignKey(Category)
     tag_list = TagField(help_text="Separate tags with spaces.", default="")
 
     # managers, first one is default
