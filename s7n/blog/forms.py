@@ -5,6 +5,6 @@ class EntryForm(ModelForm):
 
     class Meta:
         model = Entry
-        fields = ('title', 'slug', 'pub_date', 'pub_enddate', 'group', 'body')
+        fields = ('title', 'pub_date', 'pub_enddate', 'group', 'body')
 
 

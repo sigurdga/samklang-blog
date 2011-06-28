@@ -5,7 +5,7 @@ from django.contrib.sites.models import Site
 
 from tagging.fields import TagField
 from tagging.models import Tag
-from s7n.utils import markdown
+from s7n.utils import markdown, slugify
 
 from s7n.blog.managers import LiveEntryManager
 
@@ -48,10 +48,11 @@ class Entry(models.Model):
     def save(self, *args, **kwargs):
         # convert markdown to html and store it
         self.body_html = markdown(self.body)
+        self.slug = slugify(self.title)
         super(Entry, self).save(*args, **kwargs)
 
     def __unicode__(self):
-    	return self.title
+        return u"%s, %s" % (self.title, self.body[0:50])
 
     @models.permalink
     def get_absolute_url(self):

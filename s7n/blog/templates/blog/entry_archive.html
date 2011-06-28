@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Blog" %}{% endblock %}
+
+{% block content %}
+{% for entry in latest %}
+<h1>{{ entry.title }}</h1>
+
+{{ entry.body_html|safe }}
+
+<p>{{ entry.pub_date }} {% trans "by" %} {{ entry.user }}</p>
+{% empty %}
+<h1>{% trans "No entries yet" %}</h1>
+
+<p>{% trans "This blog is really empty, but this placeholder is used instead, to give you an impression of what this page will look like." %}</p>
+{% endfor %}
+{% endblock content %}

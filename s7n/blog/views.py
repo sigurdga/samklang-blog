@@ -1,25 +1,28 @@
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import get_object_or_404, render_to_response
-from django.template import RequestContext
+from django.http import HttpResponseRedirect
+from django.views.generic.edit import CreateView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+from django.contrib.sites.models import Site
 
 from s7n.blog.models import Entry
 from s7n.blog.forms import EntryForm
 
-def new_entry(request):
-    """Create a new entry"""
-    if request.method == 'POST':
-        form = EntryForm(request.POST)
-        if form.is_valid():
-            entry = form.save(commit=False)
-            entry.user = request.user
-            entry.save()
-            return HttpResponseRedirect('/')
-    else:
-        entry = Entry()
-        form = EntryForm(instance=entry)
+class EntryCreateView(CreateView):
+    model = Entry
+    form_class = EntryForm
 
-    return render_to_response(
-        'blog/new_entry.html',
-        {'form': form},
-        context_instance=RequestContext(request))
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        if hasattr(self.request, 'site'):
+            self.object.site = self.request.site
+        else:
+            self.object.site = Site.objects.get(pk=1)
+        self.object.save()
+        return HttpResponseRedirect(self.object.get_absolute_url())
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(EntryCreateView, self).dispatch(*args, **kwargs)
 

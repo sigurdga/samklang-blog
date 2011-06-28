@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block title %}{% trans "New post" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "New post" %}</h1>
+    <form action="" method="post" class="uniForm">
+        <fieldset class="inlineLabels">
+            {% csrf_token %}
+            {{ form|as_uni_form }}
+        </fieldset>
+        <div class="buttonHolder">
+            <button type="submit" name="submit" class="primaryAction" id="submit_new_entry">Submit</button>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block footerscript %}
+    $("#dialog").dialog("option", "title", "Select image to insert");
+    $("#id_body").markItUp(markdownSettings);
+{% endblock footerscript %}
