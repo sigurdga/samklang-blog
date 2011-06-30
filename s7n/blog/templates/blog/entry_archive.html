@@ -1,18 +1,28 @@
-{% extends "base.html" %}
+{% extends "withaside.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Blog" %}{% endblock %}
+{% block title %}{% trans "Latest news" %}{% endblock %}
+{% block header %}{% trans "Latest news" %}{% endblock %}
 
-{% block content %}
+{% block main %}
+
 {% for entry in latest %}
-<h1>{{ entry.title }}</h1>
+<section class="blogpost">
+<time datetime="{{ entry.pub_date|date:"c" }}">
+<span class="block large"> {{ entry.pub_date|date:"j" }}</span>
+<span class="block small">{{ entry.pub_date|date:"F" }}</span>
+</time>
+<h2>{{ entry.title }}</h2>
+<span class="block small">{{ entry.user }}</span>
 
 {{ entry.body_html|safe }}
-
-<p>{{ entry.pub_date }} {% trans "by" %} {{ entry.user }}</p>
+</section>
 {% empty %}
 <h1>{% trans "No entries yet" %}</h1>
 
 <p>{% trans "This blog is really empty, but this placeholder is used instead, to give you an impression of what this page will look like." %}</p>
 {% endfor %}
-{% endblock content %}
+{% endblock main %}
+
+{% block sidebar %}
+{% endblock sidebar %}
