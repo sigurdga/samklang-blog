@@ -1,0 +1,13 @@
+{% load i18n %}
+
+{% if object_list %}
+<h1>{% trans "Latest blog entries" %}</h1>
+<ul class="latest entries">
+{% for object in object_list %}
+    <li class="entry">
+        <a href="{{ object.get_absolute_url }}">{{ object.title }}</a>
+        <p>{{ object.pub_date|timesince }} {% trans "ago" %}.</p>
+    </li>
+{% endfor %}
+</ul>
+{% endif %}
