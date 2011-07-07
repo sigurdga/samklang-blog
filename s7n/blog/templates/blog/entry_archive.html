@@ -25,4 +25,7 @@
 {% endblock main %}
 
 {% block sidebar %}
+{% load blog_tags %}
+{% latest_entries 5 %}
+{% include "blog/widgets/latest.html" with object_list=latest_entries %}
 {% endblock sidebar %}
