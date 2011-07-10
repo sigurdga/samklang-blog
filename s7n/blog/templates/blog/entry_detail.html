@@ -1,20 +1,35 @@
-{% extends "base.html" %}
+{% extends "withaside.html" %}
 {% load i18n %}
 {% load comments %}
 {% load threaded_comments %}
 
 {% block title %}{{ object.title }}{% endblock %}
 
-{% block content %}
-<h1>{{ object.title }}</h1>
-
-{{ object.body_html|safe }}
+{% block main %}
+<section class="blogpost">
+    <time datetime="{{ entry.pub_date|date:"c" }}">
+        <span class="block large"> {{ object.pub_date|date:"j" }}</span>
+        <span class="block small">{{ object.pub_date|date:"F" }}</span>
+    </time>
+    <h2>{{ object.title }}</h2>
+    <span class="block small">{{ object.user }}</span>
+    {{ object.body_html|safe }}
 
 {% get_comment_count for object as comment_count %}
-<p>{{ comment_count }} {% trans "comments" %}</p>
+<p>{% blocktrans count comments=comment_count %}
+    {{ comment_count }} comment
+{% plural %}
+    {{ comment_count }} comments
+{% endblocktrans %}</p>
 
 {% render_comment_list for object %}
 
 {% render_comment_form for object %}
+</section>
+{% endblock main %}
 
-{% endblock %}
+{% block sidebar %}
+{% load blog_tags %}
+{% latest_entries 5 %}
+{% include "blog/widgets/latest.html" with object_list=latest_entries %}
+{% endblock sidebar %}

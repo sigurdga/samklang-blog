@@ -15,7 +15,8 @@
 <h2>{{ entry.title }}</h2>
 <span class="block small">{{ entry.user }}</span>
 
-{{ entry.body_html|safe }}
+{{ entry.body_html|truncatewords_html:50|safe }}
+<p class="more"><a href="{{ entry.get_absolute_url }}">{% trans "Read on →" %}</a></p>
 </section>
 {% empty %}
 <h1>{% trans "No entries yet" %}</h1>
