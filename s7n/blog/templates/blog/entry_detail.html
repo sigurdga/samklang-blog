@@ -22,10 +22,10 @@
     {{ comment_count }} comments
 {% endblocktrans %}</p>
 
-{% render_comment_list for object %}
+</section>
+{% render_comment_tree for object %}
 
 {% render_comment_form for object %}
-</section>
 {% endblock main %}
 
 {% block sidebar %}
