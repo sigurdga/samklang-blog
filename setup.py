@@ -5,14 +5,14 @@ from distutils.core import setup
 
 setup(
         name='samklang-blog',
-        version="0.1.0",
+        version="0.1.1",
         author='Jørgen Bergquist',
         author_email='gismos@gmail.com',
         url='http://github.com/sigurdga/samklang-blog',
         description='News and blog app for Samklang',
         long_description=open('README.txt').read(),
         license="AGPL",
-        packages = ['samklang_blog', 'samklang_blog.migrations'],
+        packages = ['samklang_blog', 'samklang_blog.templatetags', 'samklang_blog.migrations'],
         package_data = {'samklang_blog': ['templates/samklang_blog/*.html', 'locale/*/LC_MESSAGES/django.*o']},
         classifiers=[
                 "Development Status :: 3 - Alpha",
