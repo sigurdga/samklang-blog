@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
-from s7n.blog.views import EntryCreateView, EntryArchiveIndexView
-from s7n.blog.views import EntryYearArchiveView, EntryMonthArchiveView, EntryDateDetailView
-from s7n.blog.models import Entry
+from samklang_blog.views import EntryCreateView, EntryArchiveIndexView
+from samklang_blog.views import EntryYearArchiveView, EntryMonthArchiveView, EntryDateDetailView
+from samklang_blog.models import Entry
 
 urlpatterns = patterns('',
     (r'^new/$', EntryCreateView.as_view(), {}, 'blog_entry_new'),

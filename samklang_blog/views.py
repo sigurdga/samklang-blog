@@ -6,8 +6,8 @@ from django.utils.decorators import method_decorator
 
 from django.contrib.sites.models import Site
 
-from s7n.blog.models import Entry
-from s7n.blog.forms import EntryForm
+from samklang_blog.models import Entry
+from samklang_blog.forms import EntryForm
 
 class EntryCreateView(CreateView):
     model = Entry

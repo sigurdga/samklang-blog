@@ -1,9 +1,9 @@
 from django.contrib import admin
-from s7n.blog.models import Entry
+from samklang_blog.models import Entry
 
 class EntryAdmin(admin.ModelAdmin):
     prepopulated_fields = { 'slug': ['title'] }
-    fields = ['title', 'slug', 'body', 'user', 'group', 'site', 'pub_date', 'pub_enddate', 'tag_list']
+    fields = ['title', 'slug', 'body', 'user', 'group', 'site', 'pub_date', 'pub_enddate',]# 'tag_list']
     list_display = ('title', 'user', 'group', 'pub_date', 'updated_date')
     list_filter = ('group', 'pub_date')
     ordering = ('-pub_date',)

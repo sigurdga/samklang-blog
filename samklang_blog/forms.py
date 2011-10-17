@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from s7n.blog.models import Entry
+from samklang_blog.models import Entry
 
 class EntryForm(ModelForm):
 

@@ -1,6 +1,6 @@
 from django.template.loader import render_to_string
-from s7n.pages.pagewidgets import Widget
-from s7n.blog.models import Entry
+from samklang_pages.pagewidgets import Widget
+from samklang_blog.models import Entry
 
 class Latest(Widget):
     """Widget listing latest entries"""
@@ -10,6 +10,6 @@ class Latest(Widget):
         entries = Entry.live.all()[:limit]
 
         return render_to_string(
-            'blog/widgets/latest.html',
+            'samklang_blog/widgets/latest.html',
             {'object_list': entries,}
         )

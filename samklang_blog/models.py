@@ -3,11 +3,11 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site
 
-from tagging.fields import TagField
-from tagging.models import Tag
-from s7n.utils import markdown, slugify
+#from tagging.fields import TagField
+#from tagging.models import Tag
+from samklang_utils import markdown, slugify
 
-from s7n.blog.managers import LiveEntryManager
+from samklang_blog.managers import LiveEntryManager
 
 class Entry(models.Model):
     """
@@ -34,7 +34,7 @@ class Entry(models.Model):
     slug = models.SlugField(unique_for_date='pub_date', help_text="Suggested value generated from title. Must be unique.")
 
 	# categorization
-    tag_list = TagField(help_text="Separate tags with spaces.", default="")
+    #tag_list = TagField(help_text="Separate tags with spaces.", default="")
 
     # managers, first one is default
     objects = models.Manager()
@@ -43,7 +43,7 @@ class Entry(models.Model):
     class Meta:
         ordering = ['-pub_date']
         verbose_name_plural = _("entries")
-        db_table = 's7n_blog_entry'
+        db_table = 'samklang_blog_entry'
 
     def save(self, *args, **kwargs):
         # convert markdown to html and store it
@@ -63,10 +63,10 @@ class Entry(models.Model):
             'slug': self.slug
         })
 
-    def _get_tags(self):
-        return Tag.objects.get_for_object(self)
+    #def _get_tags(self):
+        #return Tag.objects.get_for_object(self)
 
-    def _set_tags(self, tags):
-        Tag.objects.update_tags(self, tags)
+    #def _set_tags(self, tags):
+        #Tag.objects.update_tags(self, tags)
 
-    tags = property(_get_tags, _set_tags)
+    #tags = property(_get_tags, _set_tags)

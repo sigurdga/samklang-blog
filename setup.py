@@ -2,8 +2,23 @@
 from distutils.core import setup
 
 setup(
-        name = 's7n-blog',
-        version = "1a1",
-        packages = ['s7n', 's7n.blog', 's7n.blog.migrations'],
-        package_data = {'s7n.blog': ['templates/blog/*.html', 'locale/*/LC_MESSAGES/django.*o']},
+        name='samklang-blog',
+        version="0.1.0",
+        author='Jørgen Bergquist',
+        author_email='gismos@gmail.com',
+        url='http://github.com/sigurdga/samklang-blog',
+        description='News and blog app for Samklang',
+        long_description=open('README.txt').read(),
+        license="AGPL",
+        packages = ['samklang_blog', 'samklang_blog.migrations'],
+        package_data = {'samklang_blog': ['templates/samklang_blog/*.html', 'locale/*/LC_MESSAGES/django.*o']},
+        classifiers=[
+                "Development Status :: 3 - Alpha",
+                "License :: OSI Approved :: GNU Affero General Public License v3",
+                "Intended Audience :: Developers",
+                "Framework :: Django",
+                "Environment :: Web Environment",
+                "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+                ]
         )
+

@@ -1,5 +1,5 @@
 from django import template
-from s7n.blog.models import Entry
+from samklang_blog.models import Entry
 
 register = template.Library()
 
