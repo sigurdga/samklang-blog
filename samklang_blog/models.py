@@ -2,11 +2,10 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site
+from taggit.managers import TaggableManager
 
-#from tagging.fields import TagField
-#from tagging.models import Tag
 from samklang_utils import markdown, slugify
-
+from samklang_utils.managers import PermissionManager
 from samklang_blog.managers import LiveEntryManager
 
 class Entry(models.Model):
@@ -18,10 +17,10 @@ class Entry(models.Model):
     """
 
     # core fields
-    title = models.CharField(max_length=80, help_text=_("Maximum 80 characters."))
-    body = models.TextField(help_text=_("Content written in markdown syntax."))
+    title = models.CharField(_("title"), max_length=80, help_text=_("Maximum 80 characters."))
+    body = models.TextField(_("contents"), help_text=_("Content written in markdown syntax."))
     pub_date = models.DateTimeField(blank=True, null=True, help_text=_("Date from which the entry is shown live. Blank = draft."))
-    pub_enddate = models.DateTimeField(blank=True, null=True, help_text=_("Date from which the entry not longer is shown live. Blank = live forever."))
+    pub_enddate = models.DateTimeField(blank=True, null=True, help_text=_("Date from which the entry is no longer shown. Blank = live forever."))
     updated_date = models.DateTimeField(auto_now=True)
 
 	# fields to store generated html
@@ -31,13 +30,11 @@ class Entry(models.Model):
     site = models.ForeignKey(Site, verbose_name=_('site'))
     user = models.ForeignKey(User, verbose_name=_('user'))
     group = models.ForeignKey(Group, verbose_name=_('created for'), null=True, blank=True)
-    slug = models.SlugField(unique_for_date='pub_date', help_text="Suggested value generated from title. Must be unique.")
-
-	# categorization
-    #tag_list = TagField(help_text="Separate tags with spaces.", default="")
+    slug = models.SlugField(unique_for_date='pub_date', help_text=_("Suggested value generated from title. Must be unique."))
+    tags = TaggableManager(_('tags'), blank=True, help_text=_('A comma-separated list of tags.'))
 
     # managers, first one is default
-    objects = models.Manager()
+    objects = PermissionManager()
     live = LiveEntryManager()
 
     class Meta:
@@ -56,17 +53,9 @@ class Entry(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('blog_entry_detail', (), {
+        return ('blog-entry-detail', (), {
             'year': self.pub_date.strftime("%Y"),
-            'month': self.pub_date.strftime("%b").lower(),
+            'month': self.pub_date.strftime("%m"),
             'day': self.pub_date.strftime("%d"),
             'slug': self.slug
         })
-
-    #def _get_tags(self):
-        #return Tag.objects.get_for_object(self)
-
-    #def _set_tags(self, tags):
-        #Tag.objects.update_tags(self, tags)
-
-    #tags = property(_get_tags, _set_tags)
