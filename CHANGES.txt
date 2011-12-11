@@ -1,2 +1,3 @@
+v0.2.0, 2011-12-11 -- Make ready for real usage: changes to models, managers, views and templates
 v0.1.1, 2011-10-17 -- Include templatetags files (setup.py change)
 v0.1.0, 2011-10-17 -- Initial release.
