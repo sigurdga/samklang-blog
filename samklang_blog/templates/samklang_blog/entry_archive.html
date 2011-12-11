@@ -1,4 +1,4 @@
-{% extends "withaside.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Latest news" %}{% endblock %}
@@ -8,12 +8,10 @@
 
 {% for entry in latest %}
 <section class="blogpost">
-<time datetime="{{ entry.pub_date|date:"c" }}">
-<span class="block large"> {{ entry.pub_date|date:"j" }}</span>
-<span class="block small">{{ entry.pub_date|date:"F" }}</span>
-</time>
 <h2><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h2>
-<span class="block small">{{ entry.user }}</span>
+<div class="small">{{ entry.user.get_full_name|default:entry.user }},
+    <time datetime="{{ entry.pub_date|date:"c" }}">{{ entry.pub_date|date:"j F" }}</time>
+</div>
 
 {{ entry.body_html|truncatewords_html:50|safe }}
 <p class="more"><a href="{{ entry.get_absolute_url }}">{% trans "Read on →" %}</a></p>

@@ -1,31 +1,16 @@
-{% extends "withaside.html" %}
+{% extends "base.html" %}
 {% load i18n %}
-{% load comments %}
-{% load threaded_comments %}
 
 {% block title %}{{ object.title }}{% endblock %}
 
 {% block main %}
 <section class="blogpost">
-    <time datetime="{{ entry.pub_date|date:"c" }}">
-        <span class="block large"> {{ object.pub_date|date:"j" }}</span>
-        <span class="block small">{{ object.pub_date|date:"F" }}</span>
-    </time>
-    <h2>{{ object.title }}</h2>
-    <span class="block small">{{ object.user }}</span>
+<h1>{{ object.title }}</h1>
+<div class="metaline">{{ object.user.get_full_name|default:entry.user }},
+    <time datetime="{{ object.pub_date|date:"c" }}">{{ object.pub_date|date:"j F" }}</time>
+</div>
     {{ object.body_html|safe }}
-
-{% get_comment_count for object as comment_count %}
-<p>{% blocktrans count comments=comment_count %}
-    {{ comment_count }} comment
-{% plural %}
-    {{ comment_count }} comments
-{% endblocktrans %}</p>
-
 </section>
-{% render_comment_tree for object %}
-
-{% render_comment_form for object %}
 {% endblock main %}
 
 {% block sidebar %}
@@ -33,3 +18,7 @@
 {% latest_entries 5 %}
 {% include "samklang_blog/widgets/latest.html" with object_list=latest_entries %}
 {% endblock sidebar %}
+
+{% block context_menu %}
+<li><a href="{% url blog-entry-edit object.id %}">{% trans "Edit" %}</a></li>
+{% endblock %}
