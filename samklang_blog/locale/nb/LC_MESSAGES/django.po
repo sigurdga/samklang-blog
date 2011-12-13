@@ -1,0 +1,108 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-13 21:59+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: models.py:20
+msgid "title"
+msgstr "tittel"
+
+#: models.py:20
+msgid "Maximum 80 characters."
+msgstr "Maks 80 tegn."
+
+#: models.py:21
+msgid "contents"
+msgstr "innhold"
+
+#: models.py:21
+msgid "Content written in markdown syntax."
+msgstr "Innhold skrevet med markdown-forenklinger."
+
+#: models.py:22
+msgid "Date from which the entry is shown live. Blank = draft."
+msgstr "Dato for når innleggest skal bli gjort synlig. Blankt felt tolkes som at dette er en skisse som ikke skal vises til andre."
+
+#: models.py:23
+msgid "Date from which the entry is no longer shown. Blank = live forever."
+msgstr "Dato for når innlegget skal kunne tas vekk. Blankt betyr at det beholdes uendelig. Dette er mest nyttig til å slette innlegg."
+
+#: models.py:30
+msgid "site"
+msgstr "nettsted"
+
+#: models.py:31
+msgid "user"
+msgstr "bruker"
+
+#: models.py:32
+msgid "created for"
+msgstr "laget for"
+
+#: models.py:33
+msgid "Suggested value generated from title. Must be unique."
+msgstr "Foreslått verdi med utgangspunkt i tittel. Må være unik."
+
+#: models.py:34
+msgid "tags"
+msgstr "tags"
+
+#: models.py:34
+msgid "A comma-separated list of tags."
+msgstr "Kommaseparert liste med tags."
+
+#: models.py:42
+msgid "entries"
+msgstr "innlegg"
+
+#: templates/samklang_blog/entry_archive.html:4
+#: templates/samklang_blog/entry_archive.html:5
+msgid "Latest news"
+msgstr "Siste nytt"
+
+#: templates/samklang_blog/entry_archive.html:17
+msgid "Read on →"
+msgstr "Les mer…"
+
+#: templates/samklang_blog/entry_archive.html:20
+msgid "No entries yet"
+msgstr "Ingen innlegg ennå"
+
+#: templates/samklang_blog/entry_archive.html:22
+msgid ""
+"This blog is really empty, but this placeholder is used instead, to give you "
+"an impression of what this page will look like."
+msgstr "Bloggen er egentlig tom, men dette er en placeholder for å vise hvordan det kan se ut."
+
+#: templates/samklang_blog/entry_detail.html:23
+#: templates/samklang_blog/entry_form.html:5
+#: templates/samklang_blog/entry_form.html:15
+msgid "Edit"
+msgstr "Rediger"
+
+#: templates/samklang_blog/entry_form.html:23
+msgid "Save"
+msgstr "Lagre"
+
+#: templates/samklang_blog/widgets/latest.html:4
+msgid "Latest blog entries"
+msgstr "Siste blogginnlegg"
+
+#: templates/samklang_blog/widgets/latest.html:9
+msgid "ago"
+msgstr "siden"
