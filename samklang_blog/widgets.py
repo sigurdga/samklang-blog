@@ -10,6 +10,6 @@ class Latest(Widget):
         entries = Entry.live.all()[:limit]
 
         return render_to_string(
-            'samklang_blog/widgets/latest.html',
+            'samklang_blog/latest_entries.html',
             {'object_list': entries,}
         )

@@ -16,7 +16,7 @@
 {% block sidebar %}
 {% load blog_tags %}
 {% latest_entries 5 %}
-{% include "samklang_blog/widgets/latest.html" with object_list=latest_entries %}
+{% include "samklang_blog/latest_entries.html" with object_list=latest_entries %}
 {% endblock sidebar %}
 
 {% block context_menu %}
