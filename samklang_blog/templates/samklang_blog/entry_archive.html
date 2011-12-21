@@ -6,10 +6,13 @@
 
 {% block main %}
 
+<h1 id="blogheader">{% trans "Blog archive" %}</h1>
+
+<div class="archive">
 {% for entry in latest %}
 <section class="blogpost">
-<h2><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h2>
-<div class="small">{{ entry.user.get_full_name|default:entry.user }},
+<h2 class="title"><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h2>
+<div class="meta">{{ entry.user.get_full_name|default:entry.user }},
     <time datetime="{{ entry.pub_date|date:"c" }}">{{ entry.pub_date|date:"j F" }}</time>
 </div>
 
@@ -21,6 +24,7 @@
 
 <p>{% trans "This blog is really empty, but this placeholder is used instead, to give you an impression of what this page will look like." %}</p>
 {% endfor %}
+</div>
 {% endblock main %}
 
 {% block sidebar %}
@@ -28,3 +32,9 @@
 {% latest_entries 5 %}
 {% include "samklang_blog/latest_entries.html" with object_list=latest_entries %}
 {% endblock sidebar %}
+
+{% block context_menu %}
+{% if request.user.is_authenticated %}
+<li><a href="{% url blog-entry-new %}">{% trans "New" %}</a></li>
+{% endif %}
+{% endblock %}

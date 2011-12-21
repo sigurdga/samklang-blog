@@ -5,8 +5,8 @@
 
 {% block main %}
 <section class="blogpost">
-<h1>{{ object.title }}</h1>
-<div class="metaline">{{ object.user.get_full_name|default:entry.user }},
+<h1 class="title">{{ object.title }}</h1>
+<div class="meta">{{ object.user.get_full_name|default:entry.user }},
     <time datetime="{{ object.pub_date|date:"c" }}">{{ object.pub_date|date:"j F" }}</time>
 </div>
     {{ object.body_html|safe }}
@@ -20,5 +20,7 @@
 {% endblock sidebar %}
 
 {% block context_menu %}
+{% if request.user.is_authenticated %}
 <li><a href="{% url blog-entry-edit object.id %}">{% trans "Edit" %}</a></li>
+{% endif %}
 {% endblock %}

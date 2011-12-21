@@ -2,11 +2,11 @@
 
 {% if object_list %}
 <h1>{% trans "Latest blog entries" %}</h1>
-<ul class="latest entries">
+<ul class="latest-entries">
 {% for object in object_list %}
     <li class="entry">
-        <h4><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h4>
-        <p>{{ object.pub_date|timesince }} {% trans "ago" %}.</p>
+        <h2><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h2>
+        <div class="meta">{{ object.pub_date|timesince }} {% trans "ago" %} {% trans "by" %} {{ request.user }}</div>
     </li>
 {% endfor %}
 </ul>
