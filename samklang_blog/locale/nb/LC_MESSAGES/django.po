@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-13 21:59+0100\n"
+"POT-Creation-Date: 2011-12-22 12:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,11 +36,15 @@ msgstr "Innhold skrevet med markdown-forenklinger."
 
 #: models.py:22
 msgid "Date from which the entry is shown live. Blank = draft."
-msgstr "Dato for når innleggest skal bli gjort synlig. Blankt felt tolkes som at dette er en skisse som ikke skal vises til andre."
+msgstr ""
+"Dato for når innleggest skal bli gjort synlig. Blankt felt tolkes som at "
+"dette er en skisse som ikke skal vises til andre."
 
 #: models.py:23
 msgid "Date from which the entry is no longer shown. Blank = live forever."
-msgstr "Dato for når innlegget skal kunne tas vekk. Blankt betyr at det beholdes uendelig. Dette er mest nyttig til å slette innlegg."
+msgstr ""
+"Dato for når innlegget skal kunne tas vekk. Blankt betyr at det beholdes "
+"uendelig. Dette er mest nyttig til å slette innlegg."
 
 #: models.py:30
 msgid "site"
@@ -75,21 +79,31 @@ msgstr "innlegg"
 msgid "Latest news"
 msgstr "Siste nytt"
 
-#: templates/samklang_blog/entry_archive.html:17
+#: templates/samklang_blog/entry_archive.html:9
+msgid "Blog archive"
+msgstr "Arkiv"
+
+#: templates/samklang_blog/entry_archive.html:20
 msgid "Read on →"
 msgstr "Les mer…"
 
-#: templates/samklang_blog/entry_archive.html:20
+#: templates/samklang_blog/entry_archive.html:23
 msgid "No entries yet"
 msgstr "Ingen innlegg ennå"
 
-#: templates/samklang_blog/entry_archive.html:22
+#: templates/samklang_blog/entry_archive.html:25
 msgid ""
 "This blog is really empty, but this placeholder is used instead, to give you "
 "an impression of what this page will look like."
-msgstr "Bloggen er egentlig tom, men dette er en placeholder for å vise hvordan det kan se ut."
+msgstr ""
+"Bloggen er egentlig tom, men dette er en placeholder for å vise hvordan det "
+"kan se ut."
 
-#: templates/samklang_blog/entry_detail.html:23
+#: templates/samklang_blog/entry_archive.html:38
+msgid "New"
+msgstr "Nytt innlegg"
+
+#: templates/samklang_blog/entry_detail.html:24
 #: templates/samklang_blog/entry_form.html:5
 #: templates/samklang_blog/entry_form.html:15
 msgid "Edit"
@@ -99,10 +113,14 @@ msgstr "Rediger"
 msgid "Save"
 msgstr "Lagre"
 
-#: templates/samklang_blog/widgets/latest.html:4
+#: templates/samklang_blog/latest_entries.html:4
 msgid "Latest blog entries"
 msgstr "Siste blogginnlegg"
 
-#: templates/samklang_blog/widgets/latest.html:9
+#: templates/samklang_blog/latest_entries.html:9
 msgid "ago"
 msgstr "siden"
+
+#: templates/samklang_blog/latest_entries.html:9
+msgid "by"
+msgstr "av"
