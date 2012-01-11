@@ -19,8 +19,8 @@ class Entry(models.Model):
     # core fields
     title = models.CharField(_("title"), max_length=80, help_text=_("Maximum 80 characters."))
     body = models.TextField(_("contents"), help_text=_("Content written in markdown syntax."))
-    pub_date = models.DateTimeField(blank=True, null=True, help_text=_("Date from which the entry is shown live. Blank = draft."))
-    pub_enddate = models.DateTimeField(blank=True, null=True, help_text=_("Date from which the entry is no longer shown. Blank = live forever."))
+    pub_date = models.DateTimeField(blank=True, null=True, verbose_name=_("publish date"), help_text=_("Date from which the entry is shown live. Blank = draft."))
+    pub_enddate = models.DateTimeField(blank=True, null=True, verbose_name=_("withdrawn date"), help_text=_("Date from which the entry is no longer accessible. Blank = live forever."))
     updated_date = models.DateTimeField(auto_now=True)
 
 	# fields to store generated html
