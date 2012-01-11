@@ -1,3 +1,4 @@
+v0.2.3, 2012-01-11 -- Update strings and initial data for new blog stories
 v0.2.2, 2011-12-22 -- Move widget templates, easier styling, update translation.
 v0.2.1, 2011-12-13 -- Autoupdate title and added norwegian bokmål translation.
 v0.2.0, 2011-12-11 -- Make ready for real usage: changes to models, managers, views and templates

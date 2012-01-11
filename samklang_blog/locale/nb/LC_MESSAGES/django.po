@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-22 12:16+0100\n"
+"POT-Creation-Date: 2012-01-11 22:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,16 +35,25 @@ msgid "Content written in markdown syntax."
 msgstr "Innhold skrevet med markdown-forenklinger."
 
 #: models.py:22
+msgid "publish date"
+msgstr "publiseringsdato"
+
+#: models.py:22
 msgid "Date from which the entry is shown live. Blank = draft."
 msgstr ""
 "Dato for når innleggest skal bli gjort synlig. Blankt felt tolkes som at "
 "dette er en skisse som ikke skal vises til andre."
 
 #: models.py:23
-msgid "Date from which the entry is no longer shown. Blank = live forever."
+msgid "withdrawn date"
 msgstr ""
-"Dato for når innlegget skal kunne tas vekk. Blankt betyr at det beholdes "
-"uendelig. Dette er mest nyttig til å slette innlegg."
+
+#: models.py:23
+msgid ""
+"Date from which the entry is no longer accessible. Blank = live forever."
+msgstr ""
+"Dato for når innlegget blir skjult. Normalt sett er dette en måte å skjule innlegg uten å slette dem. Blankt betyr at det beholdes "
+"uendelig."
 
 #: models.py:30
 msgid "site"
