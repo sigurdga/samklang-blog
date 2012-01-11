@@ -9,11 +9,14 @@ from django.contrib.sites.models import Site
 from samklang_blog.models import Entry
 from samklang_blog.forms import EntryForm
 
+from datetime import datetime
+
 MONTH_FORMAT = '%m'
 
 class EntryCreateView(CreateView):
     model = Entry
     form_class = EntryForm
+    initial = {'pub_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
     month_format = MONTH_FORMAT
 
     def form_valid(self, form):

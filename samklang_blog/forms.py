@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from samklang_blog.models import Entry
-from samklang_utils.forms import MarkdownTextarea, AutoupdateTextInput
+from samklang_utils.forms import MarkdownTextarea, AutoupdateTextInput#, DateTimePicker
 
 class EntryForm(ModelForm):
 
@@ -10,6 +10,8 @@ class EntryForm(ModelForm):
         widgets = {
                 'body': MarkdownTextarea(),
                 'title': AutoupdateTextInput(),
+                #'pub_date': DateTimePicker(),
+                #'pub_enddate': DateTimePicker(),
                 }
 
 
