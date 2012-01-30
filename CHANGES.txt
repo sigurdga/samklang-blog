@@ -1,3 +1,4 @@
+v0.2.5, 2012-01-31 -- Add div to BlogFront widget to make it easier to style
 v0.2.4, 2012-01-30 -- Make new BlogFront widget for inclusion in static pages.
 v0.2.3, 2012-01-11 -- Update strings and initial data for new blog stories
 v0.2.2, 2011-12-22 -- Move widget templates, easier styling, update translation.
