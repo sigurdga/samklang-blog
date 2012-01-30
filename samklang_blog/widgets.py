@@ -13,3 +13,16 @@ class Latest(Widget):
             'samklang_blog/latest_entries.html',
             {'object_list': entries,}
         )
+
+class BlogFront(Widget):
+    """For inclusion in main page space"""
+
+    def render(self, request):
+        limit = self.options.get('limit', 6)
+        entries = Entry.live.all()[:limit]
+
+        return render_to_string(
+            'samklang_blog/blog.html',
+            {'object_list': entries,}
+        )
+

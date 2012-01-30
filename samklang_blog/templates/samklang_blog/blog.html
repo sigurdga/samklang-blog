@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% if object_list %}
+
+{% for object in object_list %}
+<section class="blogpost">
+<div class="meta">{{ object.user.get_full_name|default:object.user }},
+    <time datetime="{{ object.pub_date|date:"c" }}">{{ object.pub_date|date:"j F" }}</time>
+</div>
+<h1 class="title"><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h1>
+{{ object.body_html|truncatewords_html:100|safe }}
+<p class="more"><a href="{{ object.get_absolute_url }}">{% trans "Read on →" %}</a></p>
+</section>
+{% endfor %}
+
+{% endif %}

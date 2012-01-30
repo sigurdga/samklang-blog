@@ -16,7 +16,7 @@
     <time datetime="{{ entry.pub_date|date:"c" }}">{{ entry.pub_date|date:"j F" }}</time>
 </div>
 
-{{ entry.body_html|truncatewords_html:50|safe }}
+{{ entry.body_html|truncatewords_html:100|safe }}
 <p class="more"><a href="{{ entry.get_absolute_url }}">{% trans "Read on →" %}</a></p>
 </section>
 {% empty %}
