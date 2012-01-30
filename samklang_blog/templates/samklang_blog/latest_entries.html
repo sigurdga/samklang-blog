@@ -6,7 +6,7 @@
 {% for object in object_list %}
     <li class="entry">
         <h2><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h2>
-        <div class="meta">{{ object.pub_date|timesince }} {% trans "ago" %} {% trans "by" %} {{ request.user }}</div>
+        <div class="meta">{{ object.pub_date|timesince }} {% trans "ago" %} {% trans "by" %} {{ object.user }}</div>
     </li>
 {% endfor %}
 </ul>
