@@ -1,3 +1,4 @@
+v0.3.1, 2013-04-08 -- Use 50 characters as max length for blog titles
 v0.3.0, 2013-04-08 -- Django 1.5 new url templatetag syntax
 v0.2.5, 2012-01-31 -- Add div to BlogFront widget to make it easier to style
 v0.2.4, 2012-01-30 -- Make new BlogFront widget for inclusion in static pages.
