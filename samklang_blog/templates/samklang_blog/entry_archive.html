@@ -35,6 +35,6 @@
 
 {% block context_menu %}
 {% if request.user.is_authenticated %}
-<li><a href="{% url blog-entry-new %}">{% trans "New" %}</a></li>
+<li><a href="{% url 'blog-entry-new' %}">{% trans "New" %}</a></li>
 {% endif %}
 {% endblock %}
