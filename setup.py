@@ -5,7 +5,7 @@ from distutils.core import setup
 
 setup(
         name='samklang-blog',
-        version="0.3.1",
+        version="0.4.0",
         author='Jørgen Bergquist',
         author_email='gismos@gmail.com',
         url='http://github.com/sigurdga/samklang-blog',
