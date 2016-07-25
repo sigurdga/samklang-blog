@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 from samklang_blog.views import EntryCreateView, EntryUpdateView, EntryArchiveIndexView
 from samklang_blog.views import EntryYearArchiveView, EntryMonthArchiveView, EntryDateDetailView
 
